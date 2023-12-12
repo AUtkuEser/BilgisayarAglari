@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vitereactrefresh
-    @vite(['resources/ts/app.tsx', 'resources/css/app.css'])
+    @vite(['resources/js/app.tsx', 'resources/css/app.css'])
 </head>
 <body>
-<div id="root"></div>
+<div id="root">sss</div>
 </body>
 </html>

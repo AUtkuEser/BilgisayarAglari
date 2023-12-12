@@ -4,16 +4,14 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 function Home() {
     return (
-        <div>home page</div>
+        <div className={""}>
+            <div>
+                home page
+            </div>
+        </div>
     );
 }
 
-
-function Deneme() {
-    return (
-        <div>deneme page</div>
-    );
-}
 
 
 function App() {
@@ -21,7 +19,6 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" index element={<Home/>}/>
-                <Route path="/deneme" element={<Deneme/>}/>
             </Routes>
         </BrowserRouter>
     );
