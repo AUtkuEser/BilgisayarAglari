@@ -1,0 +1,9 @@
+users = id, name, email, email_verified_at, password, profile_photo_url remember_token, created_at, updated_at
+friendships = id, user_id, friend_id, created_at, updated_at
+chat_rooms = id, name, photo_url, description, created_at, updated_at
+chat_room_members = id, chatroom_id, member_id, isAdmin, created_at, updated_at
+messages = id, user_id, chat_room_id, message, created_at, updated_at
+
+chat_room_messages = id, chatroom_id, message_id, created_at, updated_at
+
+chat room messages sorgulanmalı

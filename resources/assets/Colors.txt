@@ -1,0 +1,31 @@
+NotGetir yeşil = #20CE88
+NotGetir Gri = #2d2d2d
+NotGetir Kırmızı = #D61C4E
+
+Koyu Lacivert = #293462
+
+Turkuaz = #1CD6CE
+
+Hardal Sarısı = #FEDB39
+
+Açık Gri = #dcdcdc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
