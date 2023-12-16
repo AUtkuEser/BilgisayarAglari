@@ -255,17 +255,6 @@ export default function Main() {
 
                                     {/*Kişi Kartı Sonu*/}
 
-                                    <div className={"flex items-center justify-between gap-x-4 p-4 rounded-xl cursor-pointer hover:bg-gray-100 transition duration-200"}>
-                                        <div className={"w-14 h-12 rounded-md bg-purple-700 flex items-center justify-center text-xl text-white cursor-pointer"} style={{fontFamily: "Montserrat"}}>G</div>
-
-                                        <div className={"flex flex-col w-full"}>
-                                            <div className={"flex justify-between items-center"}>
-                                                <text className={"text-md font-semibold"} style={{fontFamily: "Montserrat"}}>Grup 1</text>
-                                                <text className={"text-sm text-gray-500"} style={{fontFamily: "Montserrat"}}>1h</text>
-                                            </div>
-                                            <text className={"text-sm text-gray-500"} style={{fontFamily: "Montserrat"}}>Hakan: Hoşgeldiniz</text>
-                                        </div>
-                                    </div>
 
                                 {/*    burası*/}
 
