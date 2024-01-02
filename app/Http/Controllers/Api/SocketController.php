@@ -70,7 +70,4 @@ class SocketController extends Controller
 
         return ApiResponses::success($user, 'User created successfully', 200);
     }
-
-
-
 }
