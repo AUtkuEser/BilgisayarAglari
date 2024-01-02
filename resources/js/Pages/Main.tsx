@@ -822,43 +822,19 @@ export default function Main() {
                                 className={"h-full w-full object-cover rounded-full"}
                             />
                         </div>
-                        <div className={"text-3xl md:text-xl text-gray-700 font-semibold"} style={{fontFamily: "Montserrat"}}>
-                            {user?.data?.data?.name}
+                        <div className={"text-3xl md:text-xl text-gray-700 font-semibold"}
+                             style={{fontFamily: "Montserrat"}}>
+                            {user?.data?.data?.username}
                         </div>
 
-                        <div className={"flex justify-between w-[90%] mt-12 gap-x-14"}>
-
-                            <div className={"w-2/6"}> {/*Alan*/}
-                                <div className={"p-2 bg-gray-100 rounded-lg"}>
-                                    <div className={"h-1/6 p-2 text-xl border-b-2"}
-                                         style={{fontFamily: "Montserrat"}}>Arkadaşlar
-                                    </div>
-                                    <div className={"h-5/6 p-2 mt-1"}>
-                                        <div>
-                                            <div className={"flex items-center gap-x-2"}>
-                                            <div className={"w-12 h-12 rounded-md bg-purple-700 flex items-center justify-center text-xl text-white cursor-pointer"} style={{fontFamily: "Montserrat"}}>A</div>
-                                                    <div className={"flex flex-col"}>
-                                                        <div className={"text-md font-semibold"} style={{fontFamily: "Montserrat"}}>Ahmet Hakan Cansız</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className={"w-2/6"}>
-                                    2
-                                </div>
-
-                                <div className={"w-2/6"}>
-                                    3
-                                </div>
-
-                            </div>
-
+                        <div className={"flex flex-col justify-center w-[90%] mt-12 gap-x-14 "}>
+                            <div>{user?.data?.data?.name}</div>
+                            <div>{user?.data?.data?.email}</div>
                         </div>
+
                     </div>
-                )
+                </div>
+            )
             }
 
         </div>
