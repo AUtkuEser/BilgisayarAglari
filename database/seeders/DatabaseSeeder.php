@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\ChatRoom;
-use App\Models\ChatRoomMember;
+use App\Models\ChatRoomUser;
 use App\Models\ChatRoomMessage;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -16,38 +16,54 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
-
         User::factory()->create([
-            'name' => 'Test User',
-            'username' => 'TestUser',
-            'email' => 'test@example.com',
+            'name' => 'Admin',
+            'username' => 'Admin',
+            'email' => 'admin@admin.com',
         ]);
+
+        User::factory(10)->create();
+        ChatRoom::factory(2)->create();
 
         ChatRoom::query()->create([
-            'name' => 'Test Chat1',
+            'name' => 'Group Chat',
         ]);
 
-        ChatRoomMember::query()->create([
+        ChatRoomUser::query()->create([
             'chat_room_id' => 1,
             'user_id' => 1,
         ]);
 
-        ChatRoomMember::query()->create([
+        ChatRoomUser::query()->create([
             'chat_room_id' => 1,
             'user_id' => 2,
         ]);
 
-        ChatRoomMessage::query()->create([
+        ChatRoomUser::query()->create([
             'chat_room_id' => 1,
+            'user_id' => 3,
+        ]);
+
+        ChatRoomUser::query()->create([
+            'chat_room_id' => 2,
             'user_id' => 1,
-            'message' => 'Hello World',
         ]);
 
-        ChatRoomMessage::query()->create([
-            'chat_room_id' => 1,
+        ChatRoomUser::query()->create([
+            'chat_room_id' => 2,
             'user_id' => 2,
-            'message' => 'alooooo',
         ]);
+
+//        ChatRoomMessage::query()->create([
+//            'chat_room_id' => 1,
+//            'user_id' => 1,
+//            'message' => 'Hello World',
+//        ]);
+//
+//        ChatRoomMessage::query()->create([
+//            'chat_room_id' => 1,
+//            'user_id' => 2,
+//            'message' => 'alooooo',
+//        ]);
     }
 }
