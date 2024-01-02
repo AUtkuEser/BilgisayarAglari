@@ -58,9 +58,9 @@ class User extends Authenticatable
         });
     }
 
-    public function chat_room_members(): BelongsToMany
+    public function chat_rooms(): BelongsToMany
     {
-        return $this->belongsToMany(ChatRoomMember::class, 'chat_room_members', 'user_id', 'chat_room_id');
+        return $this->belongsToMany(ChatRoom::class, 'chat_room_user', 'user_id', 'chat_room_id');
     }
 
     public function chat_room_messages(): HasMany

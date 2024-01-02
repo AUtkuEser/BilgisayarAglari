@@ -140,19 +140,6 @@ class ChatController extends Controller
             }
         }
 
-        // bu
-//        if (count($chatUsers) == 1) {
-//            $chatRoomName = $chatUsers[0]->name;
-//        }
-//        else {
-//            $chatRoomName = $chatroom->name;
-//        }
-//
-//        ChatRoom::query()->where('id', $request->id)->update([
-//            'name' => $chatRoomName,
-//        ]);
-        // bu
-
         $data = [
             'chatRoomMessages' => $chatRoomMessages,
             'target' => $chatUsers,

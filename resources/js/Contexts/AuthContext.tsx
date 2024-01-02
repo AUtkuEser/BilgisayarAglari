@@ -27,7 +27,7 @@ export function AuthContextProvider({children}: {children: ReactNode}) {
 
         if (response.data.success){
             setUser(response.data.data);
-            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.data.token}`;
             localStorage.setItem('user', JSON.stringify(response));
             return true;
         }
@@ -43,7 +43,7 @@ export function AuthContextProvider({children}: {children: ReactNode}) {
 
         if (response.data.success){
             setUser(response.data.data);
-            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.data.token}`;
             localStorage.setItem('user', JSON.stringify(response));
             return true;
         }
@@ -63,7 +63,7 @@ export function AuthContextProvider({children}: {children: ReactNode}) {
         if (data) {
             const object = JSON.parse(data);
             setUser(object);
-            axios.defaults.headers.common['Authorization'] = `Bearer ${object.token}`;
+            axios.defaults.headers.common['Authorization'] = `Bearer ${object.data.data.token}`;
         }
     }, []);
 

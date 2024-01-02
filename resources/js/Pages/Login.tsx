@@ -8,7 +8,7 @@ import {useAuth} from "../Contexts/AuthContext";
 
 export default function Login() {
     const {login, register} = useAuth();
-    const [email, setEmail] = useState<string>('test@example.com');
+    const [email, setEmail] = useState<string>('admin@admin.com');
     const [password, setPassword] = useState<string>('password');
 
     const [registerUsername, setRegisterUsername] = useState<string>('');
@@ -43,12 +43,11 @@ export default function Login() {
         if (isLogin) {
             return (
                 <div className={`flex flex-col items-center justify-center gap-5 w-2/5 max-xl:w-full ${changeAnimations}`}>
-                    <text className="text-5xl max-sm:text-3xl mb-10 max-sm:mb-4 font-extralight" style={{fontFamily: "Montserrat", userSelect: "none"}}>Giriş Yap</text>
+                    <div className="text-5xl max-sm:text-3xl mb-10 max-sm:mb-4 font-extralight" style={{fontFamily: "Montserrat", userSelect: "none"}}>Giriş Yap</div>
                     <div className="flex flex-col items-center justify-center w-full">
-                        <text className="text-md max-sm:text-xs mb-2"
-                              style={{fontFamily: "Montserrat", userSelect: "none"}}>
+                        <div className="text-md max-sm:text-xs mb-2 flex" style={{fontFamily: "Montserrat", userSelect: "none"}}>
                             Henüz üye değil misiniz?
-                            <text className="font-semibold text-purple-700 cursor-pointer hover:text-purple-600 ml-2 transition duration-300"
+                            <div className="font-semibold text-purple-700 cursor-pointer hover:text-purple-600 ml-2 transition duration-300"
                                   style={{userSelect: "none"}}
                                   onClick={() => {
                                       setChangeAnimations(animationController(0));
@@ -59,8 +58,8 @@ export default function Login() {
                                   }}
                             >
                                 Kayıt Ol
-                            </text>
-                        </text>
+                            </div>
+                        </div>
                         <input
                             type="email"
                             placeholder="E-Posta"
@@ -88,25 +87,15 @@ export default function Login() {
 
                     {/*Hata mesajı*/}
                     <div className={"w-full"}>
-                        <text className={`text-sm text-[#D61C4E]`}>{errorMessage}</text>
+                        <div className={`text-sm text-[#D61C4E]`}>{errorMessage}</div>
                     </div>
                     {/*Hata mesajı bitişi*/}
-
-                    <div className="flex w-full justify-between items-center">
-                        <div className="items-center justify-center">
-                            <input type="checkbox" className="w-4"/>
-                            <text className="text-md max-sm:text-xs max-sm:text-center ml-2 max-sm:ml-1" style={{fontFamily: "Montserrat", userSelect: "none"}}>Beni Hatırla</text>
-                        </div>
-                        <div>
-                            <text className="text-sm max-sm:text-xs font-semibold text-purple-700 cursor-pointer hover:text-purple-600 transition duration-300" style={{fontFamily: "Montserrat", userSelect: "none"}}>Şifremi Unuttum</text>
-                        </div>
-                    </div>
                     <button
                         className="bg-purple-700 rounded-lg p-2 m-2 w-full text-xl text-white font-semibold hover:bg-purple-800 hover:shadow-lg transition duration-300"
                         style={{fontFamily: "Montserrat"}}
                         onClick={() => {
                             login(email, password).catch(() => {
-                                setErrorMessage("olmadı")
+                                setErrorMessage("E-posta veya parola yanlış.");
                             });
                         }}
                     >Giriş Yap</button>
@@ -116,16 +105,15 @@ export default function Login() {
         else {
             return (
                 <div className={`flex flex-col items-center justify-center gap-5 w-2/5 max-xl:w-full ${changeAnimations2}`}>
-                    <text
+                    <div
                         className="text-5xl max-sm:text-3xl mb-10 max-sm:mb-4 font-extralight"
                         style={{fontFamily: "Montserrat", userSelect: "none"}}>
                         Kayıt Ol
-                    </text>
+                    </div>
                     <div className="flex flex-col items-center justify-center w-full">
-                        <text className="text-md max-sm:text-xs mb-2"
-                              style={{fontFamily: "Montserrat", userSelect: "none"}}>
+                        <div className="text-md max-sm:text-xs mb-2 flex" style={{fontFamily: "Montserrat", userSelect: "none"}}>
                             Zaten üye misiniz?
-                            <text className="font-semibold text-purple-600 cursor-pointer hover:text-purple-500 ml-2 "
+                            <div className="font-semibold text-purple-600 cursor-pointer hover:text-purple-500 ml-2 "
                                   style={{userSelect: "none"}}
                                   onClick={() => {
                                       setChangeAnimations2(animationController(0));
@@ -136,8 +124,8 @@ export default function Login() {
                                   }}
                             >
                                 Giriş Yap
-                            </text>
-                        </text>
+                            </div>
+                        </div>
                         <input
                             type="text"
                             value={registerUsername}
@@ -161,17 +149,17 @@ export default function Login() {
 
                     {/*Hata mesajı*/}
                     <div className={"w-full"}>
-                        <text className={`text-sm text-[#D61C4E]`}>{}</text>
+                        <div className={`text-sm text-[#D61C4E]`}>{}</div>
                     </div>
                     {/*Hata mesajı bitişi*/}
 
                     <div className="flex w-full items-center">
                         <input type="checkbox"/>
-                        <text
+                        <div
                             className="text-sm max-sm:text-xs max-sm:text-center ml-1 max-sm:ml-1"
                             style={{fontFamily: "Montserrat", userSelect: "none"}}>
                             Üyelik sözleşmesini kabul ediyoum.
-                        </text>
+                        </div>
                     </div>
                     <button
                         onClick={() => register(registerUsername, registerEmail, registerPassword)}
@@ -185,7 +173,7 @@ export default function Login() {
     }
 
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center p-24 max-sm:p-12 max-xl:p-16 bg-gradient-to-tl from-slate-300 via-white to-gray-100 relative">
+        <div className="flex min-h-screen flex-col items-center justify-center p-24 max-sm:p-12 max-xl:p-16 bg-gradient-to-tr from-slate-100 to-purple-200 relative">
             <div className={"w-[20%] max-lg:w-[30%] max-md:w-[40%] max-sm:w-[50%] max absolute top-10 max-sm:top-20 max-xl:block hidden"}>
                 <img src={logo} alt="logos" className={""}/>
             </div>
