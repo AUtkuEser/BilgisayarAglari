@@ -404,15 +404,15 @@ export default function Main() {
                                                                     }}>
                                                                     <div className={"flex items-center gap-2"}>
                                                                         <img
-                                                                            className={"h-10 w-10 rounded-full bg-purple-800 flex items-center justify-center"}
+                                                                            className={"h-10 w-10 rounded-full bg-purple-800 flex items-center justify-center object-cover"}
                                                                             src={resultUser.avatar}
                                                                             alt={"pp" + resultUser.id}
                                                                         >
                                                                         </img>
                                                                         <div>
-                                                                            <div className={"text-xs font-semibold"}>
-                                                                                {resultUser.name}
-                                                                            </div>
+                                                                            {/*<div className={"text-xs font-semibold"}>*/}
+                                                                            {/*    {resultUser.name}*/}
+                                                                            {/*</div>*/}
                                                                             <div className={"text-xs text-gray-600"}>
                                                                                 {resultUser.username}
                                                                             </div>
@@ -441,7 +441,8 @@ export default function Main() {
                                                     Oluştur
                                                 </div>
                                                 <div>Seçilenler:</div>
-                                                <div className={`flex flex-wrap max-w-[230px] ${addChatRoomUsername.length > 1 ? "max-h-[100px]" : "max-h-[200px]"} overflow-auto gap-2`}>
+                                                <div
+                                                    className={`flex flex-wrap max-w-[230px] ${addChatRoomUsername.length > 1 ? "max-h-[100px]" : "max-h-[200px]"} overflow-auto gap-2`}>
                                                     {addChatSelectedUsers.map((selectedUser, index) => (
                                                         <div
                                                             key={index}
@@ -453,7 +454,7 @@ export default function Main() {
                                                             }}
                                                         >
                                                             <div>
-                                                                {selectedUser.id === user.data.data.id ? "Siz" : selectedUser.name}
+                                                                {selectedUser.id === user.data.data.id ? "Siz" : selectedUser.username}
                                                             </div>
                                                             <div className={"text-lg"}>
                                                                 <BiX/>
@@ -472,7 +473,7 @@ export default function Main() {
 
                         {/*Body*/}
                         <div className={"h-[90%] px-6 flex flex-col mt-4"}>
-                            {/*Kişiler*/}
+                        {/*Kişiler*/}
                             <div className={"pr-2 overflow-auto"}>
                                 <div className={""}>
                                     {/*Kişi Kartı*/}
@@ -504,13 +505,13 @@ export default function Main() {
                                                     <div className={"h-full w-full"}>
                                                         {chat.users?.length > 2 ? (
                                                             <img
-                                                                src={chat.photo_url? "" : "https://i.im.ge/2022/09/06/ORWAmm.resim-2022-09-06-010841437.md.png"}
+                                                                src={chat.photo_url? "" : "https://i.im.ge/2024/01/03/xeOHAy.group.md.png"}
                                                                 alt={"chat-" + chat.id}
                                                                 className={"h-full w-full object-cover rounded-full"}
                                                             />
                                                         ) : (
                                                             <img
-                                                                src={chat.users.filter(value => value.id !== user?.data?.data?.id)[0].avatar}
+                                                                src={chat.users.filter(value => value.id !== user?.data?.data?.id)[0].avatar ?? "https://i.im.ge/2024/01/03/xeOzaJ.user.md.png"}
                                                                 alt=""
                                                                 className={"h-full w-full object-cover rounded-full"}
                                                             />
@@ -521,7 +522,7 @@ export default function Main() {
                                                 <div className={"flex flex-col gap-y-2 text-pretty"}>
                                                     <div className={"flex justify-between items-center"}>
                                                         <div className={"text-md max-lg:text-sm max-md:text-xs max-sm:text-lg font-semibold"} style={{ fontFamily: "Montserrat" }}>
-                                                            {chat.users?.length > 2 ? chat.name : chat.users?.find((chatUser) => chatUser.id !== user?.data?.data?.id)?.name}
+                                                            {chat.users?.length > 2 ? chat.name : chat.users?.find((chatUser) => chatUser.id !== user?.data?.data?.id)?.username}
                                                         </div>
                                                     </div>
                                                     <div className={"flex justify-between items-center"}>
@@ -564,7 +565,7 @@ export default function Main() {
                             <div className={"flex flex-col items-center justify-center"}>
                                 <div className={"flex items-center justify-center text-gray-900 text-2xl max-md:text-sm font-semibold gap-x-4"} style={{fontFamily: "Montserrat", userSelect: "none"}}>
                                     <div
-                                        className={"text-2xl p-0.5 cursor-pointer"}
+                                        className={"text-2xl p-0.5 cursor-pointer hidden max-sm:block"}
                                         onClick={() => {setSmallState("chats")}}
                                     >
                                         <BiArrowBack />
@@ -572,13 +573,13 @@ export default function Main() {
                                     <div className={"h-14 w-14 flex items-center"}>
                                         {target.length > 1 ? (
                                             <img
-                                                src={allChats?.filter(filterChat => filterChat?.id === currentChatRoomId)[0]?.photo_url}
-                                                alt="asd"
+                                                src={allChats?.filter(filterChat => filterChat?.id === currentChatRoomId)[0]?.photo_url ?? "https://i.im.ge/2024/01/03/xeOHAy.group.md.png"}
+                                                alt=""
                                                 className={"h-full w-full object-cover rounded-full"}
                                             />
                                         ) : (
-                                            <img src={targetUser.avatar}
-                                                 alt="ss"
+                                            <img src={targetUser?.avatar ?? "https://i.im.ge/2024/01/03/xeOzaJ.user.md.png"}
+                                                 alt=""
                                                  className={"h-full w-full object-cover rounded-full"}
                                             />
                                         )}
@@ -587,14 +588,14 @@ export default function Main() {
                                         target.length > 1 ? (
                                             allChats.find((chat) => chat.id === currentChatRoomId)?.name
                                         ) : (
-                                            targetUser?.name
+                                            targetUser?.username
                                         )
                                     }
                                 </div>
                             </div>
 
                             <div>
-                                <div className={`flex p-4 ${targetUser?.name? "flex" : "hidden"} items-center justify-center gap-2 bg-purple-200 rounded-md cursor-pointer transition duration-200 hover:bg-purple-300`}>
+                                <div className={`flex p-4 ${targetUser?.username? "flex" : "hidden"} items-center justify-center gap-2 bg-purple-200 rounded-md cursor-pointer transition duration-200 hover:bg-purple-300`}>
                                     <div className={"text-md text-purple-800"}><BiSolidPhone/></div>
                                 </div>
                             </div>
@@ -609,7 +610,7 @@ export default function Main() {
                                     const user1token = user?.data?.data?.token ?? "";
                                     const user1Id = user?.data?.data?.id ?? 0;
                                     const senderAvatar = target.find((user) => user.id === message.user_id)?.avatar ?? "https://i.im.ge/2022/09/06/ORWAmm.resim-2022-09-06-010841437.md.png";
-                                    const senderName = target.find((user) => user.id === message.user_id)?.name ?? "";
+                                    const senderName = target.find((user) => user.id === message.user_id)?.username ?? "";
                                     const isGroup = target.length > 1;
 
                                     if (target.length > 1) {
@@ -691,7 +692,7 @@ export default function Main() {
                                 {pusherMessages.map((message, index) => {
                                     const user1Id = user.data.data.id;
                                     const senderAvatar = target.find((user) => user.id === message.message.user_id)?.avatar ?? "https://i.im.ge/2022/09/06/ORWAmm.resim-2022-09-06-010841437.md.png";
-                                    const senderName = target.find((user) => user.id === message.message.user_id)?.name ?? "";
+                                    const senderName = target.find((user) => user.id === message.message.user_id)?.username ?? "";
                                     const isGroup = target.length > 1;
 
                                     if (message.message.user_id === user1Id) {
@@ -822,20 +823,22 @@ export default function Main() {
                                 className={"h-full w-full object-cover rounded-full"}
                             />
                         </div>
-                        <div className={"text-3xl md:text-xl text-gray-700 font-semibold"}
-                             style={{fontFamily: "Montserrat"}}>
-                            {user?.data?.data?.username}
-                        </div>
+                        <div className={"text-3xl md:text-xl text-gray-700 font-semibold max-sm:flex max-sm:items-center max-sm:justify-center max-sm:flex-col"} style={{fontFamily: "Montserrat"}}>
+                            {/*{user?.data?.data?.username}*/}
+                            <div className={"text-3xl md:text-xl text-gray-700 font-semibold"}
+                                 style={{fontFamily: "Montserrat"}}>
+                                {user?.data?.data?.username}
+                            </div>
 
-                        <div className={"flex flex-col justify-center w-[90%] mt-12 gap-x-14 "}>
-                            <div>{user?.data?.data?.name}</div>
-                            <div>{user?.data?.data?.email}</div>
+                            <div className={"flex flex-col justify-center w-[90%] mt-12 gap-x-14 "}>
+                                <div>{user?.data?.data?.name}</div>
+                                <div>{user?.data?.data?.email}</div>
+                                <div style={{fontSize: 3}}>Mustafa</div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            )
-            }
+            )}
 
         </div>
     );

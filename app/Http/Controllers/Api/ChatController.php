@@ -107,7 +107,6 @@ class ChatController extends Controller
         //
     }
 
-    // Dosya Adı: SocketController.php
     public function message(Request $request)
     {
         $data = $request->validate([
