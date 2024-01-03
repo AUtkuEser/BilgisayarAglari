@@ -5,8 +5,8 @@ import {useAuth} from "../Contexts/AuthContext";
 
 export default function Login() {
     const {login, register} = useAuth();
-    const [email, setEmail] = useState('admin@admin.com');
-    const [password, setPassword] = useState('password');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const [registerUsername, setRegisterUsername] = useState('');
     const [registerEmail, setRegisterEmail] = useState('');
@@ -56,7 +56,13 @@ export default function Login() {
                                 placeholder="E-Posta"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                // ref={emailRef}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter") {
+                                        login(email, password).catch(() => {
+                                            setErrorMessage("E-posta veya parola yanlış.");
+                                        });
+                                    }
+                                }}
                                 className="rounded-lg h-12 p-2 pl-4 w-full bg-[#F8F8F8] focus:border border-purple-700 text-[#2d2d2d] hover:bg-gray-100 focus:outline-0 focus:bg-gray-100 transition duration-300"
                                 style={{fontFamily: "Montserrat"}}
                             />
@@ -67,7 +73,13 @@ export default function Login() {
                             placeholder="Parola"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            // ref={passwordRef}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    login(email, password).catch(() => {
+                                        setErrorMessage("E-posta veya parola yanlış.");
+                                    });
+                                }
+                            }}
                             className="rounded-lg h-12 p-2 pl-4 w-full bg-[#F8F8F8] focus:border border-purple-700 text-[#2d2d2d] hover:bg-gray-100 focus:outline-0 focus:bg-gray-100 transition duration-300"
                             style={{fontFamily: "Montserrat"}}
                         />
