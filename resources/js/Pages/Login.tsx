@@ -1,6 +1,6 @@
 // @ts-ignore
 import logo from '../../assets/Voltz_Logo_Siyah.png'
-import React, {SetStateAction, useCallback, useEffect, useRef, useState} from "react";
+import React, {useState} from "react";
 import {useAuth} from "../Contexts/AuthContext";
 
 export default function Login() {
@@ -18,7 +18,7 @@ export default function Login() {
     //Kullanıcı adı veya parola yanlış. -- Kullanıcı adı veya e-posta zaten kullanılıyor. -- Parolalar eşleşmiyor.
 
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center p-24 max-sm:p-12 max-xl:p-16 bg-gradient-to-tr from-slate-100 to-purple-200 relative">
+        <div className="flex h-[100dvh] flex-col items-center justify-center p-20 max-sm:p-12 max-xl:p-16 bg-gradient-to-tr from-slate-100 to-purple-200 relative">
             <div className={"w-[20%] max-lg:w-[30%] max-md:w-[40%] max-sm:w-[50%] max absolute top-10 max-sm:top-20 max-xl:block hidden"}>
                 <img src={logo} alt="logos" className={""}/>
             </div>
@@ -34,7 +34,7 @@ export default function Login() {
 
                 {isLogin? (
                     <div className={`flex flex-col items-center justify-center gap-5 w-2/5 max-xl:w-full`}>
-                        <div className="text-5xl max-sm:text-3xl mb-10 max-sm:mb-4 font-extralight"
+                        <div className="text-5xl max-sm:text-3xl mb-10 mt-10 max-sm:mb-4 font-extralight"
                              style={{fontFamily: "Montserrat", userSelect: "none"}}>Giriş Yap
                         </div>
                         <div className="flex flex-col items-center justify-center w-full">
@@ -55,7 +55,10 @@ export default function Login() {
                                 type="email"
                                 placeholder="E-Posta"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    setErrorMessage("");
+                                }}
                                 onKeyDown={(e) => {
                                     if (e.key === "Enter") {
                                         login(email, password).catch(() => {
@@ -72,7 +75,10 @@ export default function Login() {
                             type="password"
                             placeholder="Parola"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                                setErrorMessage("");
+                            }}
                             onKeyDown={(e) => {
                                 if (e.key === "Enter") {
                                     login(email, password).catch(() => {
@@ -103,7 +109,7 @@ export default function Login() {
                 ) : (
                     <div className={`flex flex-col items-center justify-center gap-5 w-2/5 max-xl:w-full`}>
                         <div
-                            className="text-5xl max-sm:text-3xl mb-10 max-sm:mb-4 font-extralight"
+                            className="text-5xl max-sm:text-3xl mb-10 mt-10 max-sm:mb-4 font-extralight"
                             style={{fontFamily: "Montserrat", userSelect: "none"}}>
                             Kayıt Ol
                         </div>

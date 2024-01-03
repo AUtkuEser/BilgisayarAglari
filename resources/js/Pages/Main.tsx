@@ -299,9 +299,9 @@ export default function Main() {
                             style={{fontFamily: "Montserrat"}}
                             onClick={() => {setCurrentScreen("profile")}}>
                             <img
-                                src={user?.data?.data?.avatar}
+                                src={user?.data?.data?.avatar ?? "https://i.im.ge/2024/01/04/3XfEOh.user.md.png"}
                                 alt={user?.data?.data?.id}
-                                className={"w-14 max-xl:w-12 max-lg:w-10 h-14 max-xl:h-12 rounded-2xl max-sm:rounded-xl max-sm:w-full bg-red-800"}
+                                className={"w-14 max-xl:w-12 max-lg:w-10 h-14 max-xl:h-12 rounded-2xl max-sm:rounded-xl max-sm:w-full"}
                             />
                         </div>
                         {/*pp bitiş*/}
@@ -404,8 +404,8 @@ export default function Main() {
                                                                     }}>
                                                                     <div className={"flex items-center gap-2"}>
                                                                         <img
-                                                                            className={"h-10 w-10 rounded-full bg-purple-800 flex items-center justify-center object-cover"}
-                                                                            src={resultUser.avatar}
+                                                                            className={"h-10 w-10 rounded-full flex items-center justify-center object-cover"}
+                                                                            src={resultUser.avatar ?? "https://i.im.ge/2024/01/04/3XfEOh.user.md.png"}
                                                                             alt={"pp" + resultUser.id}
                                                                         >
                                                                         </img>
@@ -505,13 +505,13 @@ export default function Main() {
                                                     <div className={"h-full w-full"}>
                                                         {chat.users?.length > 2 ? (
                                                             <img
-                                                                src={chat.photo_url? "" : "https://i.im.ge/2024/01/03/xeOHAy.group.md.png"}
+                                                                src={chat.photo_url? "" : "https://i.im.ge/2024/01/04/3XfxmM.group.md.png"}
                                                                 alt={"chat-" + chat.id}
                                                                 className={"h-full w-full object-cover rounded-full"}
                                                             />
                                                         ) : (
                                                             <img
-                                                                src={chat.users.filter(value => value.id !== user?.data?.data?.id)[0].avatar ?? "https://i.im.ge/2024/01/03/xeOzaJ.user.md.png"}
+                                                                src={chat.users.filter(value => value.id !== user?.data?.data?.id)[0].avatar ?? "https://i.im.ge/2024/01/04/3XfEOh.user.md.png"}
                                                                 alt=""
                                                                 className={"h-full w-full object-cover rounded-full"}
                                                             />
@@ -562,28 +562,32 @@ export default function Main() {
 
                         {/*Header*/}
                         <div className={"h-[10%] border-b px-3 flex items-center justify-between"}>
-                            <div className={"flex flex-col items-center justify-center"}>
-                                <div className={"flex items-center justify-center text-gray-900 text-2xl max-md:text-sm font-semibold gap-x-4"} style={{fontFamily: "Montserrat", userSelect: "none"}}>
-                                    <div
-                                        className={"text-2xl p-0.5 cursor-pointer hidden max-sm:block"}
-                                        onClick={() => {setSmallState("chats")}}
-                                    >
-                                        <BiArrowBack />
-                                    </div>
-                                    <div className={"h-14 w-14 flex items-center"}>
-                                        {target.length > 1 ? (
-                                            <img
-                                                src={allChats?.filter(filterChat => filterChat?.id === currentChatRoomId)[0]?.photo_url ?? "https://i.im.ge/2024/01/03/xeOHAy.group.md.png"}
-                                                alt=""
-                                                className={"h-full w-full object-cover rounded-full"}
-                                            />
-                                        ) : (
-                                            <img src={targetUser?.avatar ?? "https://i.im.ge/2024/01/03/xeOzaJ.user.md.png"}
-                                                 alt=""
-                                                 className={"h-full w-full object-cover rounded-full"}
-                                            />
-                                        )}
-                                    </div>
+                            <div
+                                className={"flex items-center text-gray-900 text-2xl max-md:text-sm font-semibold gap-x-4"}
+                                style={{fontFamily: "Montserrat", userSelect: "none"}}>
+                                <div
+                                    className={"text-2xl p-0.5 cursor-pointer hidden max-sm:block"}
+                                    onClick={() => {
+                                        setSmallState("chats")
+                                    }}
+                                >
+                                    <BiArrowBack/>
+                                </div>
+                                <div className={"h-14 w-14 flex items-center"}>
+                                    {target.length > 1 ? (
+                                        <img
+                                            src={allChats?.filter(filterChat => filterChat?.id === currentChatRoomId)[0]?.photo_url ?? "https://i.im.ge/2024/01/04/3XfxmM.group.md.png"}
+                                            alt=""
+                                            className={"h-full w-full object-cover rounded-full"}
+                                        />
+                                    ) : (
+                                        <img src={targetUser?.avatar ?? "https://i.im.ge/2024/01/04/3XfEOh.user.md.png"}
+                                             alt=""
+                                             className={"h-full w-full object-cover rounded-full"}
+                                        />
+                                    )}
+                                </div>
+                                <div className={"flex flex-col"}>
                                     {
                                         target.length > 1 ? (
                                             allChats.find((chat) => chat.id === currentChatRoomId)?.name
@@ -591,11 +595,23 @@ export default function Main() {
                                             targetUser?.username
                                         )
                                     }
+                                    <div className={"text-xs text-gray-400"}>
+                                        {"Siz, "}
+                                        {
+                                            target.map((userG, index) => (
+                                                <span key={index}>
+                                                        {userG.username}
+                                                    {index !== target.length - 1 ? ", " : ""}
+                                                    </span>
+                                            ))
+                                        }
+                                    </div>
                                 </div>
                             </div>
 
                             <div>
-                                <div className={`flex p-4 ${targetUser?.username? "flex" : "hidden"} items-center justify-center gap-2 bg-purple-200 rounded-md cursor-pointer transition duration-200 hover:bg-purple-300`}>
+                                <div
+                                    className={`flex p-4 ${targetUser?.username ? "flex" : "hidden"} items-center justify-center gap-2 bg-purple-200 rounded-md cursor-pointer transition duration-200 hover:bg-purple-300`}>
                                     <div className={"text-md text-purple-800"}><BiSolidPhone/></div>
                                 </div>
                             </div>
@@ -609,7 +625,7 @@ export default function Main() {
                                 {messages.length > 0 && currentChatRoomId && messages.map((message, index) => {
                                     const user1token = user?.data?.data?.token ?? "";
                                     const user1Id = user?.data?.data?.id ?? 0;
-                                    const senderAvatar = target.find((user) => user.id === message.user_id)?.avatar ?? "https://i.im.ge/2022/09/06/ORWAmm.resim-2022-09-06-010841437.md.png";
+                                    const senderAvatar = target.find((user) => user.id === message.user_id)?.avatar ?? "https://i.im.ge/2024/01/04/3XfEOh.user.md.png";
                                     const senderName = target.find((user) => user.id === message.user_id)?.username ?? "";
                                     const isGroup = target.length > 1;
 
@@ -621,8 +637,9 @@ export default function Main() {
                                                         className={"bg-purple-700 rounded-tl-lg rounded-br-lg rounded-bl-lg gap-x-4 py-4 pl-4 pr-3 min-w-[100px] max-w-[600px] max-lg:max-w-[300px] text-white text-md justify-between items-center flex"}
                                                         style={{fontFamily: "Montserrat"}}>
                                                         {message?.message}
-                                                        <div className={"h-full flex items-end select-none text-gray-200"}
-                                                             style={{fontSize: 9}}>
+                                                        <div
+                                                            className={"h-full flex items-end select-none text-gray-200"}
+                                                            style={{fontSize: 9}}>
                                                             {message?.created_at ? (
                                                                 new Date(message.created_at).toLocaleTimeString("tr-TR", {
                                                                     hour: '2-digit',
@@ -691,7 +708,7 @@ export default function Main() {
                                 })}
                                 {pusherMessages.map((message, index) => {
                                     const user1Id = user.data.data.id;
-                                    const senderAvatar = target.find((user) => user.id === message.message.user_id)?.avatar ?? "https://i.im.ge/2022/09/06/ORWAmm.resim-2022-09-06-010841437.md.png";
+                                    const senderAvatar = target.find((user) => user.id === message.message.user_id)?.avatar ?? "https://i.im.ge/2024/01/04/3XfEOh.user.md.png";
                                     const senderName = target.find((user) => user.id === message.message.user_id)?.username ?? "";
                                     const isGroup = target.length > 1;
 
@@ -772,7 +789,6 @@ export default function Main() {
                                         type="text"
                                         placeholder={"Mesaj yaz"}
                                         value={message}
-                                        disabled={isLoading}
                                         onChange={(e) => {
                                             setMessage(e.target.value);
                                             setPusherMessage(e.target.value);
@@ -818,7 +834,7 @@ export default function Main() {
                             className={"w-24 h-24 rounded-full bg-purple-700 flex items-center justify-center text-4xl text-white"}
                             style={{fontFamily: "Montserrat", userSelect: "none"}}>
                             <img
-                                src={user?.data?.data?.avatar}
+                                src={user?.data?.data?.avatar ?? "https://i.im.ge/2024/01/04/3XfEOh.user.md.png"}
                                 alt=""
                                 className={"h-full w-full object-cover rounded-full"}
                             />
